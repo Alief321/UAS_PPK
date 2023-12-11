@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IPSTIS</string>
+    <string name="login">Silahkan Login</string>
+    <string name="register">Silahkan Buat Akun</string>
+    <string name="HaloUser">Halo  %1$s 👋🏻</string>
+
+</resources>

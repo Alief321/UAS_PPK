@@ -1,0 +1,15 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.uasppk.HomeFragment"
+        android:label="Home Fragment"
+        tools:layout="@layout/home_fragment" />
+
+    <!-- Define other fragments as needed -->
+
+</navigation>

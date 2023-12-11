@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dashboard"
+    tools:context=".HomeFragment">
+
+    <TextView
+        android:id="@+id/haloUser"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="22dp"
+        android:background="#774AB6"
+        android:backgroundTint="#6A49B6"
+        android:gravity="center_vertical"
+        android:paddingStart="30dp"
+        android:text="Halo User"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/quotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/quotes"
+        android:layout_width="369dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="601dp"
+        android:text="Generate quotes otomatis"
+        android:textColor="#575757"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/haloUser" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/haloUser"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/animasi" />
+
+</FrameLayout>
