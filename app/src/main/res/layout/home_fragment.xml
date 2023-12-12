@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dashboard"
@@ -9,15 +10,14 @@
 
     <TextView
         android:id="@+id/haloUser"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="22dp"
-        android:background="#774AB6"
-        android:backgroundTint="#6A49B6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:height="40dp"
+        android:background="@color/purple_700"
+        android:backgroundTint="@color/purple_700"
         android:gravity="center_vertical"
         android:paddingStart="30dp"
-        android:text="Halo User"
+        android:text="@string/HaloUser"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -29,26 +29,27 @@
 
     <TextView
         android:id="@+id/quotes"
-        android:layout_width="369dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="601dp"
+        android:layout_width="412dp"
+        android:layout_height="86dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="546dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
         android:text="Generate quotes otomatis"
         android:textColor="#575757"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/haloUser"
         app:layout_constraintTop_toBottomOf="@+id/haloUser" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         app:layout_constraintStart_toStartOf="@+id/haloUser"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/haloUser"
         app:srcCompat="@drawable/animasi" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

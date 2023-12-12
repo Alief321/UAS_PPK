@@ -74,8 +74,8 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     val switchIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                    switchIntent.putExtra("name", loginResponse?.name)
-                    switchIntent.putExtra("Token", loginResponse?.token)
+                    switchIntent.putExtra("name", "Halo "+ loginResponse?.name + " 👋🏻")
+                    switchIntent.putExtra("token", loginResponse?.token)
                     startActivity(switchIntent)
                     // Handle successful login, e.g., save token to preferences, navigate to the next screen, etc.
                 } else {
