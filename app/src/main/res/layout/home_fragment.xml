@@ -35,7 +35,7 @@
         android:layout_marginBottom="546dp"
         android:gravity="center_vertical"
         android:paddingLeft="30dp"
-        android:text="Generate quotes otomatis"
+        android:text="Loading quotes"
         android:textColor="#575757"
         android:textSize="14sp"
         android:textStyle="bold"

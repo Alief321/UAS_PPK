@@ -1,12 +1,9 @@
 package com.example.uasppk
 
 import com.example.uasppk.service.ApiService
-import okhttp3.Interceptor
-import okhttp3.Interceptor.*
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.Locale.Builder
+
 
 
 object ApiClient {

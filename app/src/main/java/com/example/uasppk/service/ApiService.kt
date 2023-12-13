@@ -1,14 +1,18 @@
 package com.example.uasppk.service
+import com.example.uasppk.model.Matkul
 import com.example.uasppk.model.response.LoginResponse
 import com.example.uasppk.model.User
+import com.example.uasppk.model.request.ChangePasswordRequest
 import com.example.uasppk.model.request.LoginRequest
 import com.example.uasppk.model.request.RegisterRequest
+import com.example.uasppk.model.response.ChangePasswordResponse
 import com.example.uasppk.model.response.ProfileResponse
 import com.example.uasppk.model.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -25,4 +29,9 @@ interface ApiService {
     @GET("profile")
     fun profile(@Header("Authorization") authHeader: String): Call<ProfileResponse>
 
+    @PATCH("changePassword")
+    fun changePassword(@Header("Authorization") authHeader: String, @Body requestBody: ChangePasswordRequest) :Call<ChangePasswordResponse>
+
+    @GET("matkul")
+    fun getAllmatkul(@Header("Authorization") authHeader: String): Call<List<Matkul>>
 }

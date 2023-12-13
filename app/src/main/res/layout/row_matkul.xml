@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="412dp"
+        android:layout_height="0dp"
+        android:background="#E6E6E6"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/txt_nama_matkul"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:background="@color/primary"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Algoritma pemrograman" />
+
+            <TextView
+                android:id="@+id/txt_deskripsi_matkul"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                tools:text="Deskripsi: Mata kuliah ini membahas tentang blablablaba" />
+
+            <TextView
+                android:id="@+id/txt_semester"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Semester : 1" />
+
+            <TextView
+                android:id="@+id/txt_jumlah_sks"
+                android:layout_width="657dp"
+                android:layout_height="wrap_content"
+                tools:text="Jumlah SKS: 1" />
+
+            <TextView
+                android:id="@+id/txt_kategori_matkul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Kategori mata kuliah: Teori" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
