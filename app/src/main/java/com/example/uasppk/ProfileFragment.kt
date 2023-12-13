@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.uasppk.model.response.LoginResponse
 import com.example.uasppk.model.response.ProfileResponse
 import com.example.uasppk.service.ApiService
@@ -18,12 +19,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 private const val TOKEN = "token"
+private const val EMAIL = "email"
 class ProfileFragment : Fragment() {
     private var isPasswordVisible = false
 
 
     private var token: String? = null
+    private var email: String? = null
 
     private lateinit var apiService: ApiService
 
@@ -33,6 +37,7 @@ class ProfileFragment : Fragment() {
         Log.d("Cek", "masuk onCreate")
         arguments?.let {
             token = it.getString(TOKEN)
+            email = it.getString(EMAIL)
         }
     }
 
@@ -48,32 +53,17 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("Token", token!!)
         Log.d("Cek", "masuk OnViewCreated")
-
-//        val toggle = view.findViewById<Button>(R.id.togglePasswordVisibilityButton)
-//        val passwordEditText = view.findViewById<Button>(R.id.passwordEditText)
-//
-//        toggle.setOnClickListener {
-//            isPasswordVisible = !isPasswordVisible
-//            updatePasswordVisibility()
-//        }
-//
-//        // Set initial password visibility
-//        updatePasswordVisibility()
         getProfile()
+
+        val updateButton = view.findViewById<Button>(R.id.toUpdateButton)
+
+        updateButton.setOnClickListener{
+            val firstFragment = ChangePasswordFragment.newInstance(token!!, email!!)
+            val transaction = fragmentManager!!.beginTransaction()
+            transaction.replace(R.id.frame_layout, firstFragment)
+            transaction.commit()
+        }
     }
-//
-//    private fun updatePasswordVisibility() {
-//        val passwordEditText = view?.findViewById<Button>(R.id.passwordEditText)
-//        if (isPasswordVisible) {
-//            passwordEditText?.inputType =
-//                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-//        } else {
-//            passwordEditText?.inputType =
-//                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-//        }
-//        // Move cursor to the end of the text
-////        passwordEditText.setSelection(passwordEditText.text.length)
-//    }
 
     private fun getProfile(){
         val call = apiService.profile("Bearer "+ token)
@@ -108,12 +98,14 @@ class ProfileFragment : Fragment() {
     }
     companion object {
         private const val TOKEN = "token"
+        private const val EMAIL = "email"
 
         @JvmStatic
-        fun newInstance(token: String) =
+        fun newInstance(token: String, email: String) =
             ProfileFragment().apply {
                 arguments = Bundle().apply {
                     putString(TOKEN, token)
+                    putString(EMAIL, email)
                 }
             }
     }

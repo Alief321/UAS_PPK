@@ -76,6 +76,8 @@ class LoginActivity : AppCompatActivity() {
                     val switchIntent = Intent(this@LoginActivity, MainActivity::class.java)
                     switchIntent.putExtra("name", "Halo "+ loginResponse?.name + " 👋🏻")
                     switchIntent.putExtra("token", loginResponse?.token)
+                    switchIntent.putExtra("email", loginResponse?.email)
+                    switchIntent.putExtra("id", loginResponse?.id)
                     startActivity(switchIntent)
                     // Handle successful login, e.g., save token to preferences, navigate to the next screen, etc.
                 } else {
