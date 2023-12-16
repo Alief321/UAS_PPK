@@ -5,5 +5,5 @@ data class User(
     val name: String,
     val nim: String,
     val nip: String,
-    val listAllMatkul: String
+    val listAllMatkul: String,
 )

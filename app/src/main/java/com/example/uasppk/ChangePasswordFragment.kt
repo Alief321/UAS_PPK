@@ -10,14 +10,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.uasppk.databinding.ActivityMainBinding
+import com.example.uasppk.client.ApiClient
 import com.example.uasppk.model.request.ChangePasswordRequest
 import com.example.uasppk.model.response.ChangePasswordResponse
-import com.example.uasppk.model.response.ProfileResponse
 import com.example.uasppk.service.ApiService
 import retrofit2.Call
 import retrofit2.Callback

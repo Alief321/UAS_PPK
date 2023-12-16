@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface QuotesAPIService {
 
-    @GET("today")
-    fun getQuotes(): Call<List<Quotes>>
+    @GET("quotes")
+    fun getQuotes(): Call<Quotes>
 }

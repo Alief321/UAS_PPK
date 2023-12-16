@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.SearchView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uasppk.client.ApiClient
-import com.example.uasppk.model.Matkul
+import com.example.uasppk.model.Nilai
 import com.example.uasppk.service.ApiService
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,13 +23,12 @@ import retrofit2.Response
 private const val TOKEN = "token"
 private const val ID = "id"
 
-class MatkulFragment : Fragment() {
+class NilaiFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MatkulAdapter
-    private var matkulList: List<Matkul> = emptyList()
+    private lateinit var adapter: NilaiAdapter
+    private var nilaiList: List<Nilai> = emptyList()
     private var token: String? = null
     private var id: Int? = null
-    private var name: String? = null
     private var periode: Long? = null
 
     private lateinit var apiService: ApiService
@@ -58,7 +56,7 @@ class MatkulFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         Log.d("Cek", "masuk matkul")
-        return inflater.inflate(R.layout.matkul_fragment, container, false)
+        return inflater.inflate(R.layout.nilai_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +65,7 @@ class MatkulFragment : Fragment() {
         Log.d("Cek", "masuk matkul")
 
         // Get the reference to the spinner
-        val spinner: Spinner = view.findViewById(R.id.spinner)
+        val spinner: Spinner = view.findViewById(R.id.spinner3)
 
         val listOfSemesters = listOf(
             mapOf("periode" to 99, "item" to "semua"),
@@ -83,7 +81,7 @@ class MatkulFragment : Fragment() {
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         val adapter1 = ArrayAdapter(
-            this@MatkulFragment.requireContext(),
+            this@NilaiFragment.requireContext(),
             android.R.layout.simple_spinner_item,
             listOfSemesters.map { it["item"] },
         )
@@ -107,35 +105,19 @@ class MatkulFragment : Fragment() {
                 } else {
                     periode = listOfSemesters[position]["periode"].toString().toLong()
                 }
-                addData(name, periode)
+                addData(periode)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Do nothing here
             }
         }
-        val searchView: SearchView = view.findViewById(R.id.searchView)
-
-        // Set a listener to handle query text changes
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                name = query
-                addData(name, periode)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                name = newText
-                addData(name, periode)
-                return true
-            }
-        })
 
         recyclerView = view.findViewById(R.id.recyclerView)
-        adapter = MatkulAdapter(matkulList) { matkul ->
+        adapter = NilaiAdapter(nilaiList) { nilai ->
             Toast.makeText(
-                this@MatkulFragment.activity,
-                "Anda telah mengklik ${matkul.nama}",
+                this.activity,
+                "Anda telah mengklik ${nilai.mataKuliah}",
                 Toast.LENGTH_SHORT,
             ).show()
         }
@@ -144,33 +126,33 @@ class MatkulFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
-        addData(name, periode)
+        addData(periode)
     }
 
-    private fun addData(name: String?, periode: Long?) {
-        val call = apiService.getAllmatkul("Bearer " + token, name, periode)
-        call.enqueue(object : Callback<List<Matkul>> {
+    private fun addData(periode: Long?) {
+        val call = apiService.getNilaiMahasiswa("Bearer " + token, id!!, periode)
+        call.enqueue(object : Callback<List<Nilai>> {
             override fun onResponse(
-                call: Call<List<Matkul>>,
-                response: Response<List<Matkul>>,
+                call: Call<List<Nilai>>,
+                response: Response<List<Nilai>>,
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    matkulList = responseBody!!
-                    adapter.setData(matkulList) // Add this line to update the adapter data
+                    nilaiList = responseBody!!
+                    adapter.setData(nilaiList) // Add this line to update the adapter data
                     adapter.notifyDataSetChanged()
                 } else {
                     Toast.makeText(
-                        this@MatkulFragment.activity,
-                        "Get matkul failed",
+                        this@NilaiFragment.activity,
+                        "Get nilai failed",
                         Toast.LENGTH_SHORT,
                     ).show()
                 }
             }
 
-            override fun onFailure(call: Call<List<Matkul>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Nilai>>, t: Throwable) {
                 Toast.makeText(
-                    this@MatkulFragment.activity,
+                    this@NilaiFragment.activity,
                     "Error: ${t.message}",
                     Toast.LENGTH_SHORT,
                 ).show()
@@ -183,7 +165,7 @@ class MatkulFragment : Fragment() {
         private const val ID = "id"
 
         @JvmStatic
-        fun newInstance(token: String, id: Int) = MatkulFragment().apply {
+        fun newInstance(token: String, id: Int) = NilaiFragment().apply {
             arguments = Bundle().apply {
                 putString(TOKEN, token)
                 putInt(ID, id)

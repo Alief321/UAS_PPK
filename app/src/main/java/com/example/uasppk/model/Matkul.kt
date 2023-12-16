@@ -3,7 +3,7 @@ package com.example.uasppk.model
 data class Matkul(
     val nama: String,
     val kategori: String,
-    val JumlahSKS: Int,
+    val jumlahSKS: Int,
     val deskripsi: String,
-    val periode: String
+    val periode: String,
 )

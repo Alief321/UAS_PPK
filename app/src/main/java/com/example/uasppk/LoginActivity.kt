@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.uasppk.client.ApiClient
 import com.example.uasppk.databinding.ActivityMainBinding
 import com.example.uasppk.model.request.LoginRequest
 import com.example.uasppk.model.response.LoginResponse
@@ -24,9 +25,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         apiService = ApiClient.apiService
-
 
         val emailEditText: EditText = findViewById(R.id.email)
         val passwordEditText: EditText = findViewById(R.id.password)
@@ -45,17 +44,15 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(
                     this,
                     "email dan password tidak boleh kosong",
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
             }
         }
-        registButton.setOnClickListener{
+        registButton.setOnClickListener {
             val switchIntent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(switchIntent)
         }
     }
-
-
 
     private fun performLogin(email: String, password: String) {
         val loginRequest = LoginRequest(email, password)
@@ -64,20 +61,25 @@ class LoginActivity : AppCompatActivity() {
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,
-                response: Response<LoginResponse>
+                response: Response<LoginResponse>,
             ) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     Toast.makeText(
                         this@LoginActivity,
                         "Login successful. name: ${loginResponse?.name}",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_SHORT,
                     ).show()
-                    val switchIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                    switchIntent.putExtra("name", "Halo "+ loginResponse?.name + " 👋🏻")
+                    var switchIntent = Intent(this@LoginActivity, MainActivity::class.java)
+                    if (loginResponse!!.roles.contains("Dosen")) {
+                        switchIntent = Intent(this@LoginActivity, DosenActivity::class.java)
+                    }
+                    switchIntent.putExtra("name", "Halo " + loginResponse?.name + " 👋🏻")
                     switchIntent.putExtra("token", loginResponse?.token)
                     switchIntent.putExtra("email", loginResponse?.email)
                     switchIntent.putExtra("id", loginResponse?.id)
+                    switchIntent.putExtra("roles", loginResponse?.roles!!.get(0))
+                    Log.d("roles", loginResponse?.roles!!.get(0))
                     startActivity(switchIntent)
                     // Handle successful login, e.g., save token to preferences, navigate to the next screen, etc.
                 } else {
