@@ -7,5 +7,6 @@ data class ProfileResponse(
     val kelas: String,
     val nip: String,
     val matkulAmpu: List<String>,
+    val message: String,
 
 )

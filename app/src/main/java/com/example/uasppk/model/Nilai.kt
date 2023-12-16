@@ -1,7 +1,7 @@
 package com.example.uasppk.model
 
 data class Nilai(
-    val id: Int,
+    val id: Long,
     val mataKuliah: String,
     val nilaiTugas: Double,
     val nilaiPraktikum: Double,
@@ -12,4 +12,5 @@ data class Nilai(
     val bobot: Double,
     val mahasiswa: String,
     val periode: String,
+    val message: String,
 )

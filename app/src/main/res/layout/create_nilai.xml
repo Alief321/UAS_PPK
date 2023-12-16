@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nilaicreate">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="23dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Nilai Mahasiswa"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="347dp"
+        android:layout_height="679dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="85dp"
+        android:background="#C4FFFFFF"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="5dp"
+            android:text="Mahasiswa"
+            android:textColor="#090909" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/namaMahasiswa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_200"
+            android:editable="false"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Nama mahasiswa"
+            android:textColorHint="#F6F6F6" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Mata kuliah"
+            android:textColor="#090909" />
+
+        <Spinner
+            android:id="@+id/spinnerCreateNilai"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:animationCache="false"
+            android:background="@color/purple_200"
+            android:popupBackground="@color/purple_500"
+            app:cardCornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Nilai Tugas"
+            android:textColor="#090909" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tugasText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_200"
+            android:hint="Masukkan nilai tugas"
+            android:inputType="number|numberDecimal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColorHint="#F6F6F6" />
+
+        <TextView
+            android:id="@+id/nilaiPraktikumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Nilai Praktikum"
+            android:textColor="#1E1E1E" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/praktikumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_200"
+            android:hint="Masukkan nilai Praktikum"
+            android:inputType="number|numberDecimal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColorHint="#F6F6F6" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Nilai UTS"
+            android:textColor="#1E1E1E" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/utsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_200"
+            android:hint="Masukkan nilai UTS"
+            android:inputType="number|numberDecimal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColorHint="#F6F6F6" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Nilai UAS"
+            android:textColor="#1E1E1E" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/uasText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/purple_200"
+            android:hint="Masukkan nilai uas"
+            android:inputType="number|numberDecimal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColorHint="#F6F6F6" />
+
+        <Button
+            android:id="@+id/buttonSimpan"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="Simpan" />
+
+        <Button
+            android:id="@+id/buttonUbah"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Ubah"
+            android:textColor="#FFFFFF"
+            android:theme="@style/Button.update" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:theme="@style/Button.delete"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTintMode="add"
+            android:text="Delete"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

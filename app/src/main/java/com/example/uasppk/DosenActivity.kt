@@ -26,8 +26,7 @@ class DosenActivity : AppCompatActivity() {
         Log.d("email", email)
         val homeFragment = HomeFragment.newInstance(name, token)
         val matkulFragment = MatkulFragment.newInstance(token, id)
-        val nilaiFragment = NilaiFragment.newInstance(token, id)
-        val ipFragment = IPFragment.newInstance(token, id)
+        val nilaiFragment = NilaiDosenFragment.newInstance(token, id)
         val profileFragment = ProfileFragment.newInstance(token, email, role)
 //      default
         replaceFragment(homeFragment)

@@ -19,6 +19,12 @@
     <style name="Button.primary" parent="ThemeOverlay.AppCompat">
         <item name="colorPrimary">@color/primary</item>
     </style>
+    <style name="Button.delete" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">#B2F32222</item>
+    </style>
+    <style name="Button.update" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">#FF26E629</item>
+    </style>
     <!-- Base application theme. -->
     <style name="Base.Theme.UASPPK" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
