@@ -4,17 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uasppk.model.Matkul
 
 class MatkulAdapter(
-    private val dataList: List<Matkul> = emptyList(),
-    private val onItemClicked: (Matkul) -> Unit
+    private var dataList: List<Matkul> = emptyList(),
+    private val onItemClicked: (Matkul) -> Unit,
 ) :
 
     RecyclerView.Adapter<MatkulAdapter.MatkulViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatkulViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.row_matkul, parent, false)
@@ -23,17 +21,17 @@ class MatkulAdapter(
 
     override fun onBindViewHolder(holder: MatkulViewHolder, position: Int) {
         holder.txtNama.text = dataList[position].nama
-        holder.txtDesk.text = dataList[position].deskripsi
-        holder.txtKategori.text = dataList[position].kategori
-        val jumlahSKS = dataList[position].JumlahSKS.toString()
-        holder.txtSKS.text = jumlahSKS
-        holder.txtSemester.text = dataList[position].periode
+        holder.txtDesk.text = "Deskripsi : " + dataList[position].deskripsi
+        holder.txtKategori.text = "Kategori : " + dataList[position].kategori
+        val jumlahSKS = dataList[position].jumlahSKS.toString()
+        holder.txtSKS.text = "Jumlah SKS : " + jumlahSKS
+        holder.txtSemester.text = "Semester : " + dataList[position].periode.substring(9)
         holder.itemView.setOnClickListener { onItemClicked(dataList[position]) }
     }
 
     override fun getItemCount() = dataList.size
 
-    class MatkulViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class MatkulViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtNama: TextView
         val txtDesk: TextView
         val txtKategori: TextView
@@ -48,5 +46,7 @@ class MatkulAdapter(
             txtKategori = itemView.findViewById(R.id.txt_kategori_matkul)
         }
     }
+    fun setData(newData: List<Matkul>) {
+        dataList = newData
+    }
 }
-

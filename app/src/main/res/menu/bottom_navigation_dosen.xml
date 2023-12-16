@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background = "@color/white">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/navigation_nilai"
+        android:icon="@drawable/nilai"
+        android:title="Nilai" />
+
+    <item
+        android:id="@+id/navigation_courses"
+        android:icon="@drawable/book"
+        android:title="Mata Kuliah" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/idcard"
+        android:title="Profile" />
+
+    <item
+        android:id="@+id/navigation_about"
+        android:icon="@drawable/information"
+        android:title="About" />
+</menu>

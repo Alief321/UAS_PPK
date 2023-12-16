@@ -13,13 +13,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="60dp"
             android:popupBackground="@color/purple_500"
-            app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+            app:backgroundTint="#E57373"
+            app:rippleColor="#FFFFFF"
+            app:srcCompat="@drawable/logout" />
     </FrameLayout>
 
 
@@ -32,6 +34,6 @@
         app:itemIconTint="@color/primary"
         app:itemTextColor="@color/black"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottom_navigation_dosen" />
 
 </RelativeLayout>
