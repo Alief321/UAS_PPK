@@ -20,7 +20,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 private const val TOKEN = "token"
 private const val EMAIL = "email"
 
@@ -37,12 +36,14 @@ class ChangePasswordFragment : Fragment() {
         Log.d("Cek", "masuk onCreate")
         arguments?.let {
             token = it.getString(TOKEN)
+            email = it.getString(EMAIL)
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         Log.d("Cek", "masuk OnCreateView")
         return inflater.inflate(R.layout.change_password, container, false)
@@ -50,37 +51,45 @@ class ChangePasswordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("Token", token!!)
+        Log.d("TokenUbahPassword", token!!)
+        Log.d("email", email!!)
         Log.d("Cek", "masuk OnViewCreated")
-        val checkbox : CheckBox = view.findViewById(R.id.checkPass)
+        val checkbox: CheckBox = view.findViewById(R.id.checkPass)
         val oldPass: EditText = view.findViewById(R.id.OldpasswordEditText)
-        val newPass : EditText = view.findViewById(R.id.NewpasswordEditText)
-        val konPass : EditText = view.findViewById(R.id.KonpasswordEditText)
+        val newPass: EditText = view.findViewById(R.id.NewpasswordEditText)
+        val konPass: EditText = view.findViewById(R.id.KonpasswordEditText)
 
+        checkbox.isChecked = false
+        checkbox.visibility = View.VISIBLE
         checkbox.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
             updatePasswordVisibility(newPass, konPass, oldPass)
         }
 
+        val simpan: Button = view.findViewById(R.id.buttonSimpan)
+        simpan.visibility = View.VISIBLE
 
-        val simpan : Button = view.findViewById(R.id.buttonSimpan)
-
-        if(newPass.text.toString() !== konPass.text.toString()){
-            Toast.makeText(this@ChangePasswordFragment.activity,"Password baru dan konfirmasi password harus sama", Toast.LENGTH_SHORT).show()
-            simpan.isEnabled = false
-            simpan.isClickable = false
-        }else{
-            simpan.isEnabled = true
-            simpan.isClickable = true
+        simpan.setOnClickListener() {
+            if (newPass.text.toString() != konPass.text.toString()) {
+                Toast.makeText(
+                    this@ChangePasswordFragment.activity,
+                    "Password  baru dan konfirmasi password tidak sama",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            } else {
+                Log.d("email!!!", email!!)
+                Log.d("email!!!", oldPass.text.toString())
+                Log.d(
+                    "email!!!",
+                    newPass.text.toString(),
+                )
+                updatePassword(
+                    email!!,
+                    oldPass.text.toString(),
+                    newPass.text.toString(),
+                )
+            }
         }
-
-        val oldPasstext = oldPass.text.toString()
-        val newPassText = newPass.text.toString()
-
-        simpan.setOnClickListener(){
-            updatePassword(email!!,oldPasstext, newPassText)
-        }
-
     }
 
     private fun updatePasswordVisibility(newPass: EditText, konPass: EditText, oldPass: EditText) {
@@ -102,37 +111,47 @@ class ChangePasswordFragment : Fragment() {
     }
 
     private fun updatePassword(email: String, oldPassword: String, newPasword: String) {
-        val changeRequest = ChangePasswordRequest(email,oldPassword,newPasword)
-        val call = apiService.changePassword( "Bearer "+ token, changeRequest)
+        val changeRequest = ChangePasswordRequest(email, oldPassword, newPasword)
+        val call = apiService.changePassword("Bearer " + token, changeRequest)
 
         call.enqueue(object : Callback<ChangePasswordResponse> {
             override fun onResponse(
                 call: Call<ChangePasswordResponse>,
-                response: Response<ChangePasswordResponse>
+                response: Response<ChangePasswordResponse>,
             ) {
                 if (response.isSuccessful) {
                     val changeResponse = response.body()
                     Toast.makeText(
                         this@ChangePasswordFragment.activity,
                         "${changeResponse?.message}",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_SHORT,
                     ).show()
-                    val switchIntent = Intent(this@ChangePasswordFragment.activity, MainActivity::class.java)
+                    val switchIntent =
+                        Intent(this@ChangePasswordFragment.activity, LoginActivity::class.java)
                     switchIntent.putExtra("token", token)
                     switchIntent.putExtra("email", email)
                     startActivity(switchIntent)
                 } else {
-                    Toast.makeText(this@ChangePasswordFragment.activity, "Change password failed", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        this@ChangePasswordFragment.activity,
+                        "Change password failed",
+                        Toast.LENGTH_SHORT,
+                    )
                         .show()
                 }
             }
 
             override fun onFailure(call: Call<ChangePasswordResponse>, t: Throwable) {
-                Toast.makeText(this@ChangePasswordFragment.activity, "Error: ${t.message}", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@ChangePasswordFragment.activity,
+                    "Error: ${t.message}",
+                    Toast.LENGTH_SHORT,
+                )
                     .show()
             }
         })
     }
+
     companion object {
         private const val TOKEN = "token"
         private const val EMAIL = "email"

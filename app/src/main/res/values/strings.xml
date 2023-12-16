@@ -3,9 +3,9 @@
     <string name="login">Silahkan Login</string>
     <string name="register">Silahkan Buat Akun</string>
     <string name="HaloUser">Halo  %1$s 👋🏻</string>
-    <string name="Deskripsi"> \n Aplikasi ini adalah sebuah aplikasi android yang berguna untuk melihat nilai mata kuliah per semester dan juga melihat IP dari tiap tiap mahasiswa STIS. \n Aplikasi ini dibuat dengan Kotlin dan webservice Spring boot hasil dari UTS lalu. Aplikasi ini dibuat untuk memenuhi UAS mata kuliah PPK
+    <string name="Deskripsi"> \n Aplikasi ini adalah sebuah aplikasi android yang fungsi utamanya adalah memanajemen IP mahasiswa STIS. bagi Mahasiswa aplikasi ini  berguna untuk melihat nilai mata kuliah per semester dan juga melihat IP dari tiap tiap mahasiswa STIS. Bagi dosen aplikasi ini berguna untuk menginputkan nilai dari tiap tiap mahasiswa. \n Selain fungsi tersebut aplikasi ini juga menampilkan list informasi seluruh mata kuliah di STIS dengan tampilan UI yang cukup attractive. Aplikasi ini dibuat dengan Kotlin dan webservice Spring boot hasil dari UTS lalu. Aplikasi ini dibuat untuk memenuhi UAS mata kuliah PPK
 
-        \n \n \n \n \n \n \n \n \n \n
+        \n \n \n \n
         Developer
         \n
         222111873_Aliefta Zulvansyah Bahyperdana</string>

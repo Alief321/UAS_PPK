@@ -1,9 +1,10 @@
 package com.example.uasppk.model
 
 data class User(
-    val id: Int,
+    val id: Long,
+    val email: String,
     val name: String,
     val nim: String,
     val nip: String,
-    val listAllMatkul: String,
+    val kelas: String,
 )

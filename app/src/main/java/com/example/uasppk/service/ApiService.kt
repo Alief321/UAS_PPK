@@ -6,13 +6,17 @@ import com.example.uasppk.model.Nilai
 import com.example.uasppk.model.User
 import com.example.uasppk.model.request.ChangePasswordRequest
 import com.example.uasppk.model.request.LoginRequest
+import com.example.uasppk.model.request.NilaiRequest
+import com.example.uasppk.model.request.NilaiUpdateRequest
 import com.example.uasppk.model.request.RegisterRequest
 import com.example.uasppk.model.response.ChangePasswordResponse
 import com.example.uasppk.model.response.LoginResponse
+import com.example.uasppk.model.response.NilaiIDResponse
 import com.example.uasppk.model.response.ProfileResponse
 import com.example.uasppk.model.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
@@ -21,8 +25,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("user/{id}")
-    fun getUser(@Path("id") id: Int): Call<User>
 
     @POST("login")
     fun login(@Body requestBody: LoginRequest): Call<LoginResponse>
@@ -32,6 +34,9 @@ interface ApiService {
 
     @GET("profile")
     fun profile(@Header("Authorization") authHeader: String): Call<ProfileResponse>
+
+    @DELETE("profile")
+    fun deleteAkun(@Header("Authorization") authHeader: String): Call<ProfileResponse>
 
     @PATCH("changePassword")
     fun changePassword(
@@ -57,4 +62,35 @@ interface ApiService {
     fun getIPS(
         @Header("Authorization") authHeader: String,
     ): Call<List<IPS>>
+
+    @GET("user/mahasiswa")
+    fun getAllMahasiswa(
+        @Header("Authorization") authHeader: String,
+        @Query("name") name: String?,
+    ): Call<List<User>>
+
+    @POST("nilai")
+    fun createNilai(
+        @Header("Authorization") authHeader: String,
+        @Body requestBody: NilaiRequest,
+    ): Call<Nilai>
+
+    @GET("nilai/{id}")
+    fun getNilai(
+        @Header("Authorization") authHeader: String,
+        @Path("id") id: Int,
+    ): Call<NilaiIDResponse>
+
+    @PATCH("nilai/edit/{id}")
+    fun updateNilai(
+        @Header("Authorization") authHeader: String,
+        @Path("id") id: Int,
+        @Body requestBody: NilaiUpdateRequest,
+    ): Call<Nilai>
+
+    @DELETE("nilai/{id}")
+    fun deleteNilai(
+        @Header("Authorization") authHeader: String,
+        @Path("id") id: Int,
+    ): Call<Nilai>
 }

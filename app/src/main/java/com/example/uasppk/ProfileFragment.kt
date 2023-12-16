@@ -1,5 +1,7 @@
 package com.example.uasppk
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,16 +55,34 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("Token", token!!)
+        Log.d("email", email!!)
         Log.d("Cek", "masuk OnViewCreated")
         getProfile()
 
         val updateButton = view.findViewById<Button>(R.id.toUpdateButton)
+        val deleteButton = view.findViewById<Button>(R.id.deleteButton)
+
+        deleteButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this@ProfileFragment.activity)
+            builder.setMessage("Apakah Anda yakin ingin menghapus akun?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    deleteAkun()
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+        }
 
         updateButton.setOnClickListener {
-            val firstFragment = ChangePasswordFragment.newInstance(token!!, email!!)
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.frame_layout, firstFragment)
-            transaction.commit()
+            val fragment = ChangePasswordFragment.newInstance(token!!, email!!)
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame_layout, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
     }
 
@@ -118,6 +138,45 @@ class ProfileFragment : Fragment() {
                     .show()
             }
         })
+    }
+
+    fun deleteAkun() {
+        val call = apiService.deleteAkun("Bearer " + token)
+
+        call.enqueue(
+            object : Callback<ProfileResponse> {
+                override fun onResponse(
+                    call: Call<ProfileResponse>,
+                    response: Response<ProfileResponse>,
+                ) {
+                    if (response.isSuccessful) {
+                        val profileResponse = response.body()
+                        Toast.makeText(
+                            this@ProfileFragment.activity,
+                            "Akun berhasil dihapus",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                        val switchIntent =
+                            Intent(this@ProfileFragment.activity, LoginActivity::class.java)
+                        startActivity(switchIntent)
+                    } else {
+                        Toast.makeText(
+                            this@ProfileFragment.activity,
+                            "Akun gagal dihapus",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                    Toast.makeText(
+                        this@ProfileFragment.activity,
+                        "Error: ${t.message}",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            },
+        )
     }
 
     companion object {
